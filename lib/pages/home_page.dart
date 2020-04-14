@@ -40,9 +40,8 @@ class _HomePageTodoState extends State<HomePageTodo> {
             elevation: 5,
             color: element.completed == 1 ? Colors.blue : Colors.yellow[200],
             child: ListTile(
-              title: Text("titulo"),
-              leading: Text("$posicion"),
-              subtitle: Text("subtitulo"),
+              title: Text(element.title),
+              subtitle: Text(element.body),
               isThreeLine: true,
               onTap: () {
                 setState(() {
@@ -65,9 +64,8 @@ class _HomePageTodoState extends State<HomePageTodo> {
     );
     print(todo.title);
     print(todo.body);
-    if (todo != null) {
+    if (todo.title != "" && todo.body != "" ) {
       setState(() {
-        print(todo.title);
         print(todo);
         this.todos.add(todo);
       });
