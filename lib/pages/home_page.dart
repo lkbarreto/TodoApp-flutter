@@ -62,8 +62,7 @@ class _HomePageTodoState extends State<HomePageTodo> {
         return NewTodoDialog();
       },
     );
-    print(todo.title);
-    print(todo.body);
+   
     if (todo.title != "" && todo.body != "" ) {
       setState(() {
         print(todo);
