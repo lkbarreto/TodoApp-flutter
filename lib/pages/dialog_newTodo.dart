@@ -10,13 +10,11 @@ class NewTodoDialog extends StatefulWidget {
 class _NewTodoDialogState extends State<NewTodoDialog> {
   final controllerTitle = new TextEditingController();
   final controllerBody = new TextEditingController();
+  String _dropSelected = "DEFAULT";
   @override
   Widget build(
     BuildContext context,
   ) {
-    String _dropSelected = "DEFAULT";
-    String selected="";
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -38,11 +36,10 @@ class _NewTodoDialogState extends State<NewTodoDialog> {
                   controller: controllerBody,
                   decoration: InputDecoration(labelText: 'Descripción')),
               TodoTypeDropdown(
-                selected: _dropSelected,
-                onChangedValue: (value) => setState(() {
-                  _dropSelected = value;
-                }),
-              )
+                  selected: _dropSelected,
+                  onChangedValue: (value) => setState(() {
+                        _dropSelected = value;
+                      }))
             ]),
             actions: <Widget>[
               FlatButton(
@@ -53,9 +50,27 @@ class _NewTodoDialogState extends State<NewTodoDialog> {
               FlatButton(
                   child: Text('Añadir'),
                   onPressed: () {
+                    Icon icon;
+                    print(_dropSelected);
+                    switch (_dropSelected) {
+                      case "DEFAULT":
+                        icon = Icon(Icons.check, size: 72.0);
+                        break;
+                      case "CALL":
+                        icon = Icon(Icons.call, size: 72.0);
+                        break;
+                      case "HOME_WORK":
+                        icon = Icon(Icons.contacts, size: 72.0);
+                        break;
+                      default:
+                        icon = Icon(Icons.dialpad, size: 72.0);
+                        break;
+                    }
+
                     final todo = new Todo(
                       title: controllerTitle.value.text,
                       body: controllerBody.value.text,
+                      icon: icon,
                       completed: 0,
                     );
                     controllerTitle.clear();

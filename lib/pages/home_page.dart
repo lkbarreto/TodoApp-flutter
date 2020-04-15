@@ -42,6 +42,7 @@ class _HomePageTodoState extends State<HomePageTodo> {
             child: ListTile(
               title: Text(element.title),
               subtitle: Text(element.body),
+              leading: element.icon,
               isThreeLine: true,
               onTap: () {
                 setState(() {
